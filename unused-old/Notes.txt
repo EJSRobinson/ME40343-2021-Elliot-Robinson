@@ -1,0 +1,45 @@
+initOptimiser:
+
+LBs = [6, -5 , 0];
+guess = [12, -1, 0.005];
+UBs = [16, -0.02, 0.01];
+
+results
+Theta0 -> 12.8981, ThetaTw ->  -0.8031, chordGrad -> 0.0100
+
+chordGradOptimiser:
+
+=> chord_grad = 0.008
+
+primaryOptimisation:
+
+Scatter Linear
+
+finalOptimisation:
+
+theta0_range = 12:0.005:14;
+relationGrad = -0.0631;
+relationIntercept = 0.0149;
+
+=>  theta0_out = 13.1250, thetaTw_out = -0.8133 (deg)
+
+chordGradOptimiser:
+
+=> chord_grad = 0.008
+
+trimOptimisation:
+
+=> Theta0 ->13.2799, ThetaTw ->-0.82356, chordGrad -> 0.008
+
+AEP -> 1.0209e+09
+
+---
+High Accuracy: AEP -> 1.0205e+09
+
+v_step -> 0.1, y_step -> 0.25
+
+Low Accuracy: AEP -> 1.0158e+09
+
+v_step -> 0.5, y_step -> 0.5
+
+Dif 0.46%
