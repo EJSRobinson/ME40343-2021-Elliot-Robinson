@@ -28,6 +28,7 @@ err = 1;
 count = 1;
 while (err > err_max) && (count < 100)
     [a_out, adash_out, Cn_r, Ct_r, Cn_g, Ct_g] = InducedCalcsSingleIteration(Re, a, adash, y, theta, sigma, V0);
+    
     err = abs(a_out - a) + abs(adash_out - adash);
     a = a_out;
     adash = adash_out;

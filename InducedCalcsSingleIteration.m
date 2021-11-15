@@ -6,7 +6,7 @@ function [a, adash, Cn_r, Ct_r, Cn_g, Ct_g] = InducedCalcsSingleIteration(Re, a,
 % y, radial distance
 % theta, blade angle relative to rotor plane
 % sigma, rotor solidity
-% V0, freestream velocity
+% V0, freestream veloCn_rcity
 
 % import globals
 global omega;
@@ -45,7 +45,7 @@ end
 % calculate new a and a dash
 
 % calculate K to be used in calculation of a and a dash
-K = (4*F*(sin(phi)^2))/(sigma * Cn);
+K = (4*F*(sin(phi)^2))/(sigma * Cn_r);
 
 % include Gluert factor
 if a > ac && phi < pi/2 && phi > 0 
@@ -54,10 +54,10 @@ if a > ac && phi < pi/2 && phi > 0
     end
     a_out = 0.5 * (2 + K * (1 - 2 * ac) - ((K*(1-2*ac)+2)^2 + 4*(K * ac^2 - 1))^(1/2));
 else
-    a_out = 1/(((4 * F * sin(phi)^2) / (sigma * Cn)) + 1);
+    a_out = 1/(((4 * F * sin(phi)^2) / (sigma * Cn_r)) + 1);
 end
 
-adash_out = 1/(((4 * F * sin(phi) * cos(phi)) / (sigma * Ct)) - 1);
+adash_out = 1/(((4 * F * sin(phi) * cos(phi)) / (sigma * Ct_r)) - 1);
 
 % apply relacation factor
 a = k * (a_out - a) + a;

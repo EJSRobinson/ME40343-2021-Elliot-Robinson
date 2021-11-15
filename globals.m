@@ -19,7 +19,7 @@ omega = (30 / 60) * 2 * pi;
 v_min = 5;
 v_max = 25;
 row_rotor = 2000;
-bladeLength = R - y_root;
+bladeLength = y_tip - y_root;
 modulus_elasticity = 40 * 10^9;
 discArea = pi * bladeLength^2;
 thickness_chord_ratio = 0.2;
@@ -49,7 +49,7 @@ global relaxFact;
 global err_max;
 global err_max_defAngle;
 global relaxFact_defAngle;
-y_step = 0.5; %m
+y_step = 1; %m
 v_step = 0.5; %m/s
 a_init = 0;
 adash_init = 0;
