@@ -60,5 +60,5 @@ for i = 1:(rangeSize - 1)
     
 end
 
-% return result
+% return AEP_betz - AEP
 result = AEP_betz - AEP;
