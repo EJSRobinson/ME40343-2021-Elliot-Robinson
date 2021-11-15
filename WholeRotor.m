@@ -28,7 +28,6 @@ MtotN_r = 0;
 % loop though all elementrs and calculate moments acting on each elements
 for i = 1:(rangeSize)
     [Mt_r, Mn_r, Mt_g, Mn_g] = SingleElement(y_range(i), y_step, theta_range(i), chord_range(i), V0);
-    MtotN_r
     MtotT_r = MtotT_r + Mt_r;  
     MtotN_r = MtotN_r + Mn_r;
 end
