@@ -17,13 +17,13 @@ F_c = 0;
 y_range = y:y_step:y_tip;
 
 % calculate chord sizes at all y range
-chord_range = chord_mean + (y_range - ((R - y_root) / 2)) * chord_grad;
+chord_range = chord_mean + (y_range - ((y_tip - y_root) / 2)) * chord_grad;
 
 % get range size
 rangeSize = size(y_range, 2);
 
 % calculate force at all radial distances in y_range and sum
-for j = 1:(rangeSize)
+for j = 1:(rangeSize - 1)
     chord_av = 0.5 * (chord_range(j + 1) + chord_range(j));
     thickness_av = 0.2 * chord_av;
     massDist = chord_av * thickness_av * row_rotor;

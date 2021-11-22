@@ -32,5 +32,6 @@ for i = 1:(rangeSize)
     MtotN_r = MtotN_r + Mn_r;
 end
 
+MtotN_r
 % caluclate power from total tangential moment in rotor plane00
 P = MtotT_r * Nb * omega;

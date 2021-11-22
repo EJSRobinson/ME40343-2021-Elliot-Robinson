@@ -10,7 +10,7 @@ theta_0_init = 13.1250;
 theta_tw_init = -0.8133;
 
 % set worst case velocity condition
-V0 = 20;
+V0 = 25;
 
 % set range of chord gradients
 chord_grad_range = -0.09:0.001:0.06;

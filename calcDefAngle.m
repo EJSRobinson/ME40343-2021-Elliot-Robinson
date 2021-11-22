@@ -40,7 +40,7 @@ It = (chord_range(1)^3 * (thickness_chord_ratio * chord_range(1))) / 12;    % ta
 kappaN_g(1) = MtotN_g(1) / (modulus_elasticity * In);
 kappaT_g(1) = MtotT_g(1) / (modulus_elasticity * It);
 kappa(1) = kappaN_g(1) * cos(theta(1)) - kappaT_g(1) * sin(theta(1));
-stress(1) = MtotN_g(1) * (0.5 * thickness_chord_ratio * chord_range(1)) / I1;
+stress(1) = MtotN_g(1) * (0.5 * thickness_chord_ratio * chord_range(1)) / In;
 
 % calculate stress, curvatures and new deflection angle
 for i = 1:(rangeSize - 1)
@@ -48,10 +48,10 @@ for i = 1:(rangeSize - 1)
     In = (chord_range(i + 1) * (thickness_chord_ratio * chord_range(i + 1))^3) / 12;
     It = (chord_range(i + 1)^3 * (thickness_chord_ratio * chord_range(i + 1))) / 12;
     
-    stress(i + 1) = MtotN_g(i + 1) * (0.5 * thickness_chord_ratio * chord_range(i + 1)) / I1;
+    stress(i + 1) = MtotN_g(i + 1) * (0.5 * thickness_chord_ratio * chord_range(i + 1)) / In;
     
-    kappaN_g(i + 1) = MtotN_g(i + 1) / (modulus_elasticity * I1);
-    kappaT_g(i + 1) = MtotT_g(i + 1) / (modulus_elasticity * I2);
+    kappaN_g(i + 1) = MtotN_g(i + 1) / (modulus_elasticity * In);
+    kappaT_g(i + 1) = MtotT_g(i + 1) / (modulus_elasticity * It);
     kappa(i + 1) = kappaN_g(i + 1) * cos(theta(i + 1)) - kappaT_g(i + 1) * sin(theta(i + 1));
     
     v_angle_out(i + 1) = v_angle_out(i) + 0.5 * (kappa(i) + kappa(i + 1)) * y_step;

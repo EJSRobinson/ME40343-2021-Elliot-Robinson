@@ -1,4 +1,4 @@
-function [deflection_tip, stress_max] = WholeRotorBendingStress(theta_0, theta_tw, chord_grad, V0)
+function [v_tip, stress_max] = WholeRotorBendingStress(theta_0, theta_tw, chord_grad, V0)
 % calculate maximum deflection and stress within blade
 % theta_0, inital blade angle relative to geometric plane
 % chord_grad, chord gradient
@@ -20,7 +20,7 @@ rangeSize = size(y_range, 2);
 
 % initalise theta range and chord range
 theta_range = theta_0 + theta_tw * y_range;
-chord_range = chord_mean + (y_range - ((R - y_root) / 2)) * chord_grad;
+chord_range = chord_mean + (y_range - ((y_tip - y_root) / 2)) * chord_grad;
 
 % initalise spanwise stress list
 stress = zeros(1, rangeSize);
