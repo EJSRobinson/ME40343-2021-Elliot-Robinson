@@ -7,7 +7,7 @@ CN: 12858
 
 ## Scope of Code Analysis
 
-- Base BEMT Analysis based on BET and ADT, derived helicopter blade analysis
+- Base BEMT Analysis based on BET and ADT, derived from helicopter blade analysis
 - Effect of swirl
 - Prandlt correction factor
 - Glauert correction factor
@@ -17,12 +17,12 @@ CN: 12858
 
 ## Use of Globals
 
-Globals are used throughout the code base. Most function use the same base properties, i.e. fixed geometry, air properties and mathemtical settings. As such, passing all these through the later of function as 'variables' is messy and not clear as these value do not truely vary. As such, to mitigate this, all fixed properties are defined in global.m. Use global.m to edit base properties of the system.
+Globals are used throughout the code base. Most function use the same base properties, i.e. fixed geometry, air properties and mathemtical settings. As such, passing all these through the layers of function as 'variables' is messy and not clear as these values do not truely vary. As such, to mitigate this, all fixed properties are defined in globals.m. Use globals.m to edit base properties of the system.
 
 **Ensure:**
 
-- **global.m is run before any optimisation work**
-- **global.m is run after any changes to global.m have been made**
+- **globals.m is run before any optimisation work**
+- **globals.m is run after any changes to global.m have been made**
 
 Using globals in this manner has also be done to allow the user to easilly change properties in a single location, without having to go though and change the definition of a property in many different files. This allows for rapid comparison of different run states, especilly useful when finding optimal relaxation factors, distance steps and time steps.
 
@@ -30,9 +30,9 @@ Using globals in this manner has also be done to allow the user to easilly chang
 
 1. Check globals.m and ensure properties are defined as required
 2. Run globals.m to set properties
-3. Run initOptimiser.m with sensible inital guesses to get inital optimal values for Theta0, ThetaTw and Cgrad
+3. Run initOptimiser.m with sensible inital guesses to get inital optimal values for theta0, thetaTw and Cgrad
 4. Run chordGradOptimiser.m with previously found theta0 and thetaTw values. This will perform stress and defelection analysis to allow the maximum (optimal) Cgrad to be found
-5. Run primaryOptimiser.m with found previously found optimal Cgrad. Ensure guesses for theta0 and thetaTw span a wide search range. The optimiser will perform a wide search in the AEPbetz - AEP plane. If successful, optimised values for theta0 and thetaTw should all finalise within the same valley in the AEPbetz - AEP plane. This allow for a linear relation between theta0 and thetaTw to be determined.
+5. Run primaryOptimiser.m with previously found optimal Cgrad. Ensure guesses for theta0 and thetaTw span a wide search range. The optimiser will perform a wide search in the AEPbetz - AEP plane. If successful, optimised values for theta0 and thetaTw should all finalise within the same valley in the AEPbetz - AEP surface. This allows for a linear relation between theta0 and thetaTw to be determined.
 6. Run finalOptimiser.m using previously calculated optimal Cgrad and theta0/thetaTw linear relationship. This will run through all theta0 allowing for an optimum theta0 to be found. Use the calculated linear relationship to find thetaTw.
 7. (Optional) Re-run chordGradOptimiser.m with optimised theta0 and thetaTw values to ensure previously found optimal Cgrad does not violate deflection limit.
 8. (Optional) Re-run initOptimiser.m with now optimal values. This will perform final value trimming.
@@ -48,7 +48,7 @@ High-accuracy mode should be used for all steps excluding step 5.
 
 ## FMINSEARCHBND
 
-FMINSEARCHBND is a 3rd party MATLAB function user to perform multivariate minimisation. This assignment dictated to use of this function. It is used in the following function:
+FMINSEARCHBND is a 3rd party MATLAB function used to perform multivariate minimisation. This assignment dictated the use of this function. It is used in the following scripts:
 
 - initOptimiser.m
 - primaryOptimiser.m
@@ -57,4 +57,4 @@ All code relating to FMINSEARCHBND is found within the FMINSEARCHBND folder.
 
 ## Unused-old
 
-This folder contains code which is not useful for solving the BEMT optimisation problem. Code in here was either used to plot result for the report based on this study, or for experimentation while the code was being written. As such, it is unlikely any user will find this of interest
+This folder contains code which is not useful for solving the BEMT optimisation problem. Code in here was either used to plot result for the report based on this study, or for experimentation while the code was being written. As such, it is unlikely any user will find this of interest.
