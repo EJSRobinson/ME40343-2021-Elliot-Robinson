@@ -20,8 +20,9 @@ CN: 12858
 Globals are used throughout the code base. Most function use the same base properties, i.e. fixed geometry, air properties and mathemtical settings. As such, passing all these through the later of function as 'variables' is messy and not clear as these value do not truely vary. As such, to mitigate this, all fixed properties are defined in global.m. Use global.m to edit base properties of the system.
 
 **Ensure:**
-**-global.m is run before any optimisation work**
-**-global.m is run after any changes to global.m have been made**
+
+- **global.m is run before any optimisation work**
+- **global.m is run after any changes to global.m have been made**
 
 Using globals in this manner has also be done to allow the user to easilly change properties in a single location, without having to go though and change the definition of a property in many different files. This allows for rapid comparison of different run states, especilly useful when finding optimal relaxation factors, distance steps and time steps.
 
@@ -34,22 +35,25 @@ Using globals in this manner has also be done to allow the user to easilly chang
 5. Run primaryOptimiser.m with found previously found optimal Cgrad. Ensure guesses for theta0 and thetaTw span a wide search range. The optimiser will perform a wide search in the AEPbetz - AEP plane. If successful, optimised values for theta0 and thetaTw should all finalise within the same valley in the AEPbetz - AEP plane. This allow for a linear relation between theta0 and thetaTw to be determined.
 6. Run finalOptimiser.m using previously calculated optimal Cgrad and theta0/thetaTw linear relationship. This will run through all theta0 allowing for an optimum theta0 to be found. Use the calculated linear relationship to find thetaTw.
 7. (Optional) Re-run chordGradOptimiser.m with optimised theta0 and thetaTw values to ensure previously found optimal Cgrad does not violate deflection limit.
-8. (Optimal) Re-run initOptimiser.m with now optimal values. This will perform final value trimming.
+8. (Optional) Re-run initOptimiser.m with now optimal values. This will perform final value trimming.
 
 ## High-Accuracy vs High-Speed
 
 From experimentation, values for the velocity and distance steps were found to give high-accuracy results and for the code to run quickly. The below values are guidelines and therefore can be adjusted in globals.m to fit user preferance.
 
--To run Code in high-accuracy mode: deltaV = 0.1, deltaY = 0.25
--To run code in high-speed mode: deltaV = 0.5, deltaY = 0.5
+- To run Code in high-accuracy mode: deltaV = 0.1, deltaY = 0.25
+- To run code in high-speed mode: deltaV = 0.5, deltaY = 0.5
 
 High-accuracy mode should be used for all steps excluding step 5.
 
 ## FMINSEARCHBND
 
 FMINSEARCHBND is a 3rd party MATLAB function user to perform multivariate minimisation. This assignment dictated to use of this function. It is used in the following function:
--initOptimiser.m
--primaryOptimiser.m
+
+- initOptimiser.m
+- primaryOptimiser.m
+
+All code relating to FMINSEARCHBND is found within the FMINSEARCHBND folder.
 
 ## Unused-old
 
